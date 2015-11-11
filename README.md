@@ -10,7 +10,7 @@ DOHMH inspection data, and social media data from Yelp API.
 To install the dependencies, run:
 `pip install -r requirements.txt`.
 
-Download the datasets specified in 311_parser.py and DOHMH_parser.py and put 
+Download the datasets specified in `311_parser.py` and `DOHMH_parser.py` and put 
 them in a folder called "data"
 
 Run the code to parse 311 and DOHMH inspection data:
