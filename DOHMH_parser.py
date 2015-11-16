@@ -28,12 +28,22 @@ def get_scores(_unids=None, _df_score=None):
 	return _df_insp
 
 def data_parser(_unicodes=None, _df_cut=None, _df_vio=None, _df_insp=None):
-	_df_DOHMH = pd.DataFrame(columns=['zip','num_restaurants','num_violations','num_Cviolations','avg_score'])
+	_df_DOHMH = pd.DataFrame(columns=['zip','num_restaurants','num_violations','num_Cviolations','num_amer',
+		'num_chi','num_jap','num_cafe','num_ita','num_latin','num_mex','num_pizza','num_span','avg_score'])
 	row = 0
 	print 'Start parsing data to our own data frame...'
 	for zc in _unicodes:
 		_df_DOHMH.loc[row,'zip'] = zc
 		_df_DOHMH.loc[row,'num_restaurants'] = len(_df_cut[_df_cut['ZIPCODE']==zc])
+		_df_DOHMH.loc[row,'num_amer'] = len(_df_cut[(_df_cut['ZIPCODE']==zc)&(_df_cut['CUISINE DESCRIPTION']=='American ')])
+		_df_DOHMH.loc[row,'num_chi'] = len(_df_cut[(_df_cut['ZIPCODE']==zc)&(_df_cut['CUISINE DESCRIPTION']=='Chinese')])
+		_df_DOHMH.loc[row,'num_jap'] = len(_df_cut[(_df_cut['ZIPCODE']==zc)&(_df_cut['CUISINE DESCRIPTION']=='Japanese')])
+		_df_DOHMH.loc[row,'num_cafe'] = len(_df_cut[(_df_cut['ZIPCODE']==zc)&((_df_cut['CUISINE DESCRIPTION']=='Caf\xc3\x83\xc2\xa9/Coffee/Tea')|(_df_cut['CUISINE DESCRIPTION']=='Caf\xc3\xa9/Coffee/Tea'))])
+		_df_DOHMH.loc[row,'num_ita'] = len(_df_cut[(_df_cut['ZIPCODE']==zc)&(_df_cut['CUISINE DESCRIPTION']=='Italian')])
+		_df_DOHMH.loc[row,'num_latin'] = len(_df_cut[(_df_cut['ZIPCODE']==zc)&(_df_cut['CUISINE DESCRIPTION']=='Latin (Cuban, Dominican, Puerto Rican, South & Central American)')])
+		_df_DOHMH.loc[row,'num_mex'] = len(_df_cut[(_df_cut['ZIPCODE']==zc)&(_df_cut['CUISINE DESCRIPTION']=='Mexican')])
+		_df_DOHMH.loc[row,'num_pizza'] = len(_df_cut[(_df_cut['ZIPCODE']==zc)&((_df_cut['CUISINE DESCRIPTION']=='Pizza')|(_df_cut['CUISINE DESCRIPTION']=='Pizza/Italian'))])
+		_df_DOHMH.loc[row,'num_span'] = len(_df_cut[(_df_cut['ZIPCODE']==zc)&(_df_cut['CUISINE DESCRIPTION']=='Spanish')])
 		_df_DOHMH.loc[row,'num_violations'] = len(_df_vio[_df_vio['ZIPCODE']==zc])
 		_df_DOHMH.loc[row,'num_Cviolations'] = len(_df_vio[(_df_vio['ZIPCODE']==zc)&(_df_vio['CRITICAL FLAG']=='Critical')])
 		_df_DOHMH.loc[row,'avg_score'] = np.mean(_df_insp[_df_insp['ZIPCODE']==zc]['SCORE'])

@@ -21,12 +21,15 @@ if __name__=='__main__':
 	unicodes = unicodes.astype(int)
 	unicodes.sort()
 	# initialize a dataframe to store data
-	df_311 = pd.DataFrame(columns=['zip','num_complaints'])
+	df_311 = pd.DataFrame(columns=['zip','num_complaints','num_food_est','num_food_poi','num_smoking'])
 	# start parsing
 	row = 0
 	for zc in unicodes:
 		df_311.loc[row,'zip'] = zc
 		df_311.loc[row,'num_complaints'] = len(df[df['Incident Zip']==zc])
+		df_311.loc[row,'num_food_est'] = len(df[(df['Incident Zip']==zc) & (df['Complaint Type']=='Food Establishment')])
+		df_311.loc[row,'num_food_poi'] = len(df[(df['Incident Zip']==zc) & (df['Complaint Type']=='Food Poisoning')])
+		df_311.loc[row,'num_smoking'] = len(df[(df['Incident Zip']==zc) & (df['Complaint Type']=='Smoking')])
 		row += 1
 	# finish parsing, write the dataframe to csv
 	df_311.to_csv('data_result/311_ParsingResult.csv')
