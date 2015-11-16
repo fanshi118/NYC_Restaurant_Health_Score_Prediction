@@ -14,7 +14,7 @@ if __name__=='__main__':
 	df_merge = pd.merge(df_311, df_DOHMH, how='outer', on='zip', sort=True)
 	df_merge.drop(['Unnamed: 0_x','Unnamed: 0_y'], axis=1, inplace=True)
 	df = df_merge.dropna(subset=['num_restaurants'])
-	df['num_complaints'] = df['num_complaints'].fillna(0)
+	df = df.fillna(0)
 
 	# merge yelp bar scores with restaurant scores
 	df_yelp_bar = pd.read_csv('data_result/NYC_YelpScore_Bars.csv')
@@ -23,4 +23,5 @@ if __name__=='__main__':
 
 	# merge the two merged datasets together
 	df_final = pd.merge(df_yelp, df, on='zip', sort=True)
+	df_final.drop(['Unnamed: 0_x','Unnamed: 0_y'], axis=1, inplace=True)
 	df_final.to_csv('data_result/Merged.csv')
