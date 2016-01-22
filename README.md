@@ -25,8 +25,8 @@ Run the code to merge all parsed data from different sources together:
 `python merger.py`
 
 To see the regression result on the merged dataset `merged.csv`:
-    PCA --> run the notebook `analysis_PCA.ipynb`
-    Lasso --> run the notebook `analysis_Lasso.ipynb`
+    PCA --> run the notebook `analysis_PCA.ipynb`,
+    Lasso --> run the notebook `analysis_Lasso.ipynb`,
     Random Forest --> run the notebook `analysis_RandomForest.ipynb`
 
 All parsed datasets, plus a json file specifying the weights for the Lasso model 
