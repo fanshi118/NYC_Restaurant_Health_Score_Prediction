@@ -29,6 +29,6 @@ To see the regression result on the merged dataset `merged.csv`:
     Lasso --> run the notebook `analysis_Lasso.ipynb`,
     Random Forest --> run the notebook `analysis_RandomForest.ipynb`
 
-All parsed datasets, plus a json file specifying the weights for the Lasso model 
+All parsed datasets, plus a json file specifying the weights for the Lasso model, 
 are in the `output` folder.
 All plots and maps are in the `figures` folder.
